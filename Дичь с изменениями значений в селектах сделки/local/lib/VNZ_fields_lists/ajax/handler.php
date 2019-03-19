@@ -19,3 +19,11 @@ if($_POST['ACTION'] === 'GIVE_ME_VUZ_BY_CITY_ID'){
 //    //$obj->test();
 //    $obj->getLanguagesByVuz($_POST['VUZ_ID']);
 //}
+
+
+//Направления обучения по Вузу, Языку, Уровню
+if($_POST['ACTION'] === 'GIVE_ME_ACTIVITY_DIRECTION_OPTIONS'){
+    $obj = new SelectListsData;
+
+    $obj->getActivityOptions($_POST);
+}
