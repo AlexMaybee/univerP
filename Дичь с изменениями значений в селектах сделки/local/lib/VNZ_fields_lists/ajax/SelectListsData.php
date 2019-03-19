@@ -22,20 +22,13 @@ class SelectListsData{
         $vuz_elements_select = ['ID', 'NAME','IBLOCK_ID'];
         $vuz_elements_res = $this->getListElementsByFilter($vuz_elements_filter,$vuz_elements_select);
         if(count($vuz_elements_res) > 0){
-
-
-
             foreach ($vuz_elements_res as $elem){
                 $result['options'] .= '<option value="'.$elem['ID'].'">'.$elem['NAME'].'</option>';
             }
             $result['options'] .= '<option value="1">Інший</option>';
             $result['message'] = 'Данные для поля Вузов вроед заполнены, проверь!';
         }
-        else $result['message'] = 'Нет Вузов в данном городе!';
-//        $result['result']['massive'] = $vuz_elements_res;
-//        $result['result']['count'] = count($vuz_elements_res);
-
-
+        else $result['message'] = 'Нема вузів в поточному місті!';
 
         $this->sentAnswer($result);
     }
@@ -61,9 +54,8 @@ class SelectListsData{
                 $result['options'] .= '<option value="'.$elem['ID'].'">'.$elem['NAME'].'</option>';
             }
         }
-        else $result['message'] = 'Нет Направлений по таким фильтрам (универ + язык + уровень)!';
+        else $result['message'] = 'Нема напрямків навчання згідно поточних фільтрів (універ + мова + рівень)!';
         $result['activities'] = $activity_elements_res;
-
 
         $this->sentAnswer($result);
     }
