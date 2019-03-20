@@ -59,6 +59,8 @@ class VnzListsFunctions{
                     //изменение селекта Городов
                     this.city_select.change(function () {
 
+                        $('.MyError').remove();
+
                         if(self.city_select.val() == undefined || self.city_select.val().length <= 0){
 
                             self.univer_select.closest('div[data-cid="UF_CRM_1552650693"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
@@ -69,8 +71,6 @@ class VnzListsFunctions{
                         else {
                             //активируем поля и вставляем нужные значения
                             self.univer_select.closest('div[data-cid="UF_CRM_1552650693"]').css({'pointer-events':'auto','opacity':'1'});
-
-                            $('.MyError').remove();
 
                             BX.ajax({
                                 method: "POST",
@@ -115,6 +115,9 @@ class VnzListsFunctions{
 
                     //изменение селекта Вузов
                     this.univer_select.change(function () {
+
+                        $('.MyError').remove();
+
                         //пустое значение - блокируем все
                         if(self.univer_select.val() == undefined || self.univer_select.val().length <= 0){
                             //ДеАктивируем селекты:
@@ -126,6 +129,7 @@ class VnzListsFunctions{
                         else {
                             //Если Выбрано значение "Другое", то отображаем поле "ВНЗ другое"
                             if(self.univer_select.val() == '1'){
+                                $('.MyError').remove();
                                 self.other_VUZ.closest('div[data-cid="UF_CRM_1552982722"]').css({'display':'block'}); // ДОП. ВУЗ
                                 self.other_VUZ.closest('div[data-cid="UF_CRM_1552982722"]').css({'pointer-events':'auto','opacity':'1'});
                             }
@@ -143,8 +147,7 @@ class VnzListsFunctions{
                                 (self.level_select.val() != undefined && self.level_select.val().length > 0)
                             ){
 
-                                $('.MyError').remove();
-                                //аякс-запрос для получения направлений обучения
+                               //аякс-запрос для получения направлений обучения
                                 BX.ajax({
                                     method: "POST",
                                     url: '/local/lib/VNZ_fields_lists/ajax/handler.php', // \local\lib\VNZ_fields_lists\ajax\handler.php
@@ -184,14 +187,12 @@ class VnzListsFunctions{
 
                     //изменение селекта Языка
                     this.language_select.change(function () {
-
+                        $('.MyError').remove();
                         if(
                             (self.univer_select.val() != undefined && self.univer_select.val().length > 0 && self.univer_select.val() != 1) && //если заполнены Универ, Язык и Уровень
                             (self.language_select.val() != undefined && self.language_select.val().length > 0) &&
                             (self.level_select.val() != undefined && self.level_select.val().length > 0)
                         ){
-
-                            $('.MyError').remove();
 
                             //аякс-запрос для получения направлений обучения
                             BX.ajax({
@@ -219,19 +220,22 @@ class VnzListsFunctions{
                             });
                             //аякс-запрос для получения направлений обучения
                         }
+                        else{
+                            self.activity_direction_select.closest('div[data-cid="UF_CRM_1552650852"]').css({'pointer-events':'none','opacity':'0.3'});
+                        }
                     });
 
 
                     //изменение селекта Уровень обучения
                     this.level_select.change(function () {
 
+                        $('.MyError').remove();
+
                         if(
                             (self.univer_select.val() != undefined && self.univer_select.val().length > 0 && self.univer_select.val() != 1) && //если заполнены Универ, Язык и Уровень
                             (self.language_select.val() != undefined && self.language_select.val().length > 0) &&
                             (self.level_select.val() != undefined && self.level_select.val().length > 0)
                         ){
-
-                            $('.MyError').remove();
 
                             //аякс-запрос для получения направлений обучения
                             BX.ajax({
@@ -258,6 +262,9 @@ class VnzListsFunctions{
                                 }
                             });
                             //аякс-запрос для получения направлений обучения
+                        }
+                        else{
+                            self.activity_direction_select.closest('div[data-cid="UF_CRM_1552650852"]').css({'pointer-events':'none','opacity':'0.3'});
                         }
                     });
                 }
@@ -310,6 +317,8 @@ class VnzListsFunctions{
                     //изменение селекта Городов
                     this.city_select.change(function () {
 
+                        $('.MyError').remove();
+
                         if(self.city_select.val() == undefined || self.city_select.val().length <= 0){
                             //ДеАктивируем селекты:
                             self.univer_select.closest('div[data-cid="UF_CRM_1552999901"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
@@ -320,8 +329,6 @@ class VnzListsFunctions{
                         else {
                             //активируем поля и вставляем нужные значения
                             self.univer_select.closest('div[data-cid="UF_CRM_1552999901"]').css({'pointer-events':'auto','opacity':'1'});
-
-                            $('.MyError').remove();
 
                             BX.ajax({
                                 method: "POST",
@@ -368,6 +375,8 @@ class VnzListsFunctions{
                     //изменение селекта Вузов
                     this.univer_select.change(function () {
 
+                        $('.MyError').remove();
+
                         //запуск только если значение > 0
                         //пустое значение - блокируем все
                         if(self.univer_select.val() == undefined || self.univer_select.val().length <= 0){
@@ -399,7 +408,6 @@ class VnzListsFunctions{
                                 (self.level_select.val() != undefined && self.level_select.val().length > 0)
                             ){
 
-                                $('.MyError').remove();
                                 //аякс-запрос для получения направлений обучения
                                 BX.ajax({
                                     method: "POST",
@@ -426,6 +434,7 @@ class VnzListsFunctions{
                                 });
                                 //аякс-запрос для получения направлений обучения
                             }
+                           
                         }
                     });
 
@@ -439,13 +448,15 @@ class VnzListsFunctions{
 
                     //изменение селекта Языка
                     this.language_select.change(function () {
+
+                        $('.MyError').remove();
+
                         if(
                             (self.univer_select.val() != undefined && self.univer_select.val().length > 0 && self.univer_select.val() != 1) && //если заполнены Универ, Язык и Уровень
                             (self.language_select.val() != undefined && self.language_select.val().length > 0) &&
                             (self.level_select.val() != undefined && self.level_select.val().length > 0)
                         ){
 
-                            $('.MyError').remove();
                             //аякс-запрос для получения направлений обучения
                             BX.ajax({
                                 method: "POST",
@@ -472,18 +483,23 @@ class VnzListsFunctions{
                             });
                             //аякс-запрос для получения направлений обучения
                         }
+                        else{
+                            self.activity_direction_select.closest('div[data-cid="UF_CRM_1553001989"]').css({'pointer-events':'none','opacity':'0.3'});
+                        }
                     });
 
 
                     //изменение селекта Уровень обучения
                     this.level_select.change(function () {
+
+                        $('.MyError').remove();
+
                         if(
                             (self.univer_select.val() != undefined && self.univer_select.val().length > 0 && self.univer_select.val() != 1) && //если заполнены Универ, Язык и Уровень
                             (self.language_select.val() != undefined && self.language_select.val().length > 0) &&
                             (self.level_select.val() != undefined && self.level_select.val().length > 0)
                         ){
 
-                            $('.MyError').remove();
                             //аякс-запрос для получения направлений обучения
                             BX.ajax({
                                 method: "POST",
@@ -510,6 +526,9 @@ class VnzListsFunctions{
                                 }
                             });
                             //аякс-запрос для получения направлений обучения
+                        }
+                        else{
+                            self.activity_direction_select.closest('div[data-cid="UF_CRM_1553001989"]').css({'pointer-events':'none','opacity':'0.3'});
                         }
                     });
                 }
