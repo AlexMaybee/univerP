@@ -22,6 +22,7 @@ class SelectListsData{
         $vuz_elements_select = ['ID', 'NAME','IBLOCK_ID'];
         $vuz_elements_res = $this->getListElementsByFilter($vuz_elements_filter,$vuz_elements_select);
         if(count($vuz_elements_res) > 0){
+            $result['options'] .= '<option value="">Не выбрано</option>';
             foreach ($vuz_elements_res as $elem){
                 $result['options'] .= '<option value="'.$elem['ID'].'">'.$elem['NAME'].'</option>';
             }
@@ -50,6 +51,7 @@ class SelectListsData{
         $activity_elements_select = ['ID', 'NAME','IBLOCK_ID'];
         $activity_elements_res = $this->getListElementsByFilter($activity_elements_filter,$activity_elements_select);
         if(count($activity_elements_res) > 0 ){
+            $result['options'] .= '<option value="">Не выбрано</option>';
             foreach ($activity_elements_res as $elem){
                 $result['options'] .= '<option value="'.$elem['ID'].'">'.$elem['NAME'].'</option>';
             }

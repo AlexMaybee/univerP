@@ -63,6 +63,8 @@ class VnzListsFunctions{
                     //это для работы в дальнейших функциях
                     var self = this;
 
+                    //console.log(this.city_select.val());
+
                     //активируем селект с городами (главный)
                     this.city_select.closest('div[data-cid="UF_CRM_1552650638"]').css({'pointer-events':'auto','opacity':'1'});
 
@@ -83,6 +85,12 @@ class VnzListsFunctions{
                             self.language_select.closest('div[data-cid="UF_CRM_1552650744"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
                             self.level_select.closest('div[data-cid="UF_CRM_1552650798"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
                             self.activity_direction_select.closest('div[data-cid="UF_CRM_1552650852"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+
+                            //05.04 Смена значений полей на "Не выбран"
+                            self.univer_select.val("");
+                            self.language_select.val("");
+                            self.level_select.val("");
+                            self.activity_direction_select.val("");
                         }
                         else {
                             //активируем поля и вставляем нужные значения
@@ -95,26 +103,31 @@ class VnzListsFunctions{
                                 dataType: "json",
                                 onsuccess: function (data) {
 
-                                    //Если результат пустой, то очищаем селект с Вузами и деактивируем его!
-                                    if(data.options === false || data.options == null){
+                                    if(data != null){
+                                        //Если результат пустой, то очищаем селект с Вузами и деактивируем его!
+                                        if(data.options === false || data.options == null){
 
-                                        $('.MyError').remove();
+                                            $('.MyError').remove();
 
-                                        self.city_select.closest('div[data-cid="UF_CRM_1552650638"]').after('<div class="MyError" style="color:red;font-weight:bolder;text-align: center;">' + data.message + '</div>'); // ошибка после города
+                                            self.city_select.closest('div[data-cid="UF_CRM_1552650638"]').after('<div class="MyError" style="color:red;font-weight:bolder;text-align: center;">' + data.message + '</div>'); // ошибка после города
 
-                                        self.univer_select.closest('div[data-cid="UF_CRM_1552650693"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
-                                        self.language_select.closest('div[data-cid="UF_CRM_1552650744"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
-                                        self.level_select.closest('div[data-cid="UF_CRM_1552650798"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
-                                        self.activity_direction_select.closest('div[data-cid="UF_CRM_1552650852"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+                                            self.univer_select.closest('div[data-cid="UF_CRM_1552650693"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
+                                            self.language_select.closest('div[data-cid="UF_CRM_1552650744"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
+                                            self.level_select.closest('div[data-cid="UF_CRM_1552650798"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
+                                            self.activity_direction_select.closest('div[data-cid="UF_CRM_1552650852"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+                                        }
+                                        else {
+                                            //активируем поля и вставляем нужные значения
+                                            self.univer_select.empty();
+                                            self.univer_select.append(data.options);
+                                            self.univer_select.closest('div[data-cid="UF_CRM_1552650693"]').css({'pointer-events':'auto','opacity':'1'});
+                                            self.level_select.closest('div[data-cid="UF_CRM_1552650798"]').css({'pointer-events':'auto','opacity':'1'});
+
+                                            //05.04 Недостающий
+                                            self.language_select.closest('div[data-cid="UF_CRM_1552650744"]').css({'pointer-events':'auto','opacity':'1'});
+
+                                        }
                                     }
-                                    else {
-                                        //активируем поля и вставляем нужные значения
-                                        self.univer_select.empty();
-                                        self.univer_select.append(data.options);
-                                        self.univer_select.closest('div[data-cid="UF_CRM_1552650693"]').css({'pointer-events':'auto','opacity':'1'});
-                                        self.level_select.closest('div[data-cid="UF_CRM_1552650798"]').css({'pointer-events':'auto','opacity':'1'});
-                                    }
-
                                 }
                             });
 
@@ -140,6 +153,11 @@ class VnzListsFunctions{
                             self.language_select.closest('div[data-cid="UF_CRM_1552650744"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
                             self.level_select.closest('div[data-cid="UF_CRM_1552650798"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
                             self.activity_direction_select.closest('div[data-cid="UF_CRM_1552650852"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+
+                            //05.04 Очистка значений полей, если
+                            self.language_select.val("");
+                            self.level_select.val("");
+                            self.activity_direction_select.val("");
                         }
                         //активируем поле ниже Языков, значения НЕ вставляем и запросы НЕ делаем
                         else {
@@ -155,6 +173,9 @@ class VnzListsFunctions{
                             }
 
                             self.language_select.closest('div[data-cid="UF_CRM_1552650744"]').css({'pointer-events':'auto','opacity':'1'});
+
+                            //05.04
+                            self.level_select.closest('div[data-cid="UF_CRM_1552650798"]').css({'pointer-events':'auto','opacity':'1'});
 
                             //запрос для заполнения направления деятельности
                             if(
@@ -322,6 +343,12 @@ class VnzListsFunctions{
                             self.alt_language_select.closest('div[data-cid="UF_CRM_1553244868"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
                             self.alt_level_select.closest('div[data-cid="UF_CRM_1553244927"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
                             self.alt_activity_direction_select.closest('div[data-cid="UF_CRM_1553244985"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+
+                            //05.04 Смена значений полей на "Не выбран"
+                            self.alt_univer_select.val("");
+                            self.alt_language_select.val("");
+                            self.alt_level_select.val("");
+                            self.alt_activity_direction_select.val("");
                         }
                         else {
                             //активируем поля и вставляем нужные значения
@@ -334,28 +361,31 @@ class VnzListsFunctions{
                                 dataType: "json",
                                 onsuccess: function (data) {
 
-                                    //Если результат пустой, то очищаем селект с Вузами и деактивируем его!
-                                    if(data.options === false || data.options == null){
+                                    if(data != null){
+                                        //Если результат пустой, то очищаем селект с Вузами и деактивируем его!
+                                        if(data.options === false || data.options == null){
 
-                                        //ДеАктивируем селекты:
-                                        $('.MyError1').remove();
+                                            //ДеАктивируем селекты:
+                                            $('.MyError1').remove();
 
-                                        self.alt_city_select.closest('div[data-cid="UF_CRM_1553243950"]').after('<div class="MyError1" style="color:red;font-weight:bolder;text-align: center;">' + data.message + '</div>'); // ошибка после города
+                                            self.alt_city_select.closest('div[data-cid="UF_CRM_1553243950"]').after('<div class="MyError1" style="color:red;font-weight:bolder;text-align: center;">' + data.message + '</div>'); // ошибка после города
 
-                                        self.alt_univer_select.closest('div[data-cid="UF_CRM_1553244630"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
-                                        self.alt_language_select.closest('div[data-cid="UF_CRM_1553244868"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
-                                        self.alt_level_select.closest('div[data-cid="UF_CRM_1553244927"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
-                                        self.alt_activity_direction_select.closest('div[data-cid="UF_CRM_1553244985"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+                                            self.alt_univer_select.closest('div[data-cid="UF_CRM_1553244630"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
+                                            self.alt_language_select.closest('div[data-cid="UF_CRM_1553244868"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
+                                            self.alt_level_select.closest('div[data-cid="UF_CRM_1553244927"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
+                                            self.alt_activity_direction_select.closest('div[data-cid="UF_CRM_1553244985"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+                                        }
+                                        else {
+
+                                            //активируем поля и вставляем нужные значения
+                                            self.alt_univer_select.empty();
+                                            self.alt_univer_select.append(data.options);
+                                            self.alt_univer_select.closest('div[data-cid="UF_CRM_1553244630"]').css({'pointer-events':'auto','opacity':'1'});
+                                            self.alt_language_select.closest('div[data-cid="UF_CRM_1553244868"]').css({'pointer-events':'auto','opacity':'1'});
+                                            self.alt_level_select.closest('div[data-cid="UF_CRM_1553244927"]').css({'pointer-events':'auto','opacity':'1'});
+                                        }
                                     }
-                                    else {
 
-                                        //активируем поля и вставляем нужные значения
-                                        self.alt_univer_select.empty();
-                                        self.alt_univer_select.append(data.options);
-                                        self.alt_univer_select.closest('div[data-cid="UF_CRM_1553244630"]').css({'pointer-events':'auto','opacity':'1'});
-                                        self.alt_language_select.closest('div[data-cid="UF_CRM_1553244868"]').css({'pointer-events':'auto','opacity':'1'});
-                                        self.alt_level_select.closest('div[data-cid="UF_CRM_1553244927"]').css({'pointer-events':'auto','opacity':'1'});
-                                    }
                                 }
                             });
                         }
@@ -381,6 +411,11 @@ class VnzListsFunctions{
                             self.alt_language_select.closest('div[data-cid="UF_CRM_1553244868"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
                             self.alt_level_select.closest('div[data-cid="UF_CRM_1553244927"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
                             self.alt_activity_direction_select.closest('div[data-cid="UF_CRM_1553244985"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+
+                            //05.04 Замена значений полей на ""
+                            self.alt_language_select.val("");
+                            self.alt_level_select.val("");
+                            self.alt_activity_direction_select.val("");
                         }
                         //активируем поле ниже Языков, значения НЕ вставляем и запросы НЕ делаем
                         else {
@@ -396,6 +431,9 @@ class VnzListsFunctions{
                             }
 
                             self.alt_language_select.closest('div[data-cid="UF_CRM_1553244868"]').css({'pointer-events':'auto','opacity':'1'});
+
+                            //05.04
+                            self.alt_level_select.closest('div[data-cid="UF_CRM_1553244927"]').css({'pointer-events':'auto','opacity':'1'});
 
                             //запрос для заполнения направления деятельности
                             if(
@@ -601,6 +639,13 @@ class VnzListsFunctions{
                             self.language_select.closest('div[data-cid="UF_CRM_1553001818"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
                             self.level_select.closest('div[data-cid="UF_CRM_1553001933"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
                             self.activity_direction_select.closest('div[data-cid="UF_CRM_1553001989"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+
+                            //05.04 Смена значений полей на "Не выбран"
+                            self.univer_select.val("");
+                            self.language_select.val("");
+                            self.level_select.val("");
+                            self.activity_direction_select.val("");
+
                         }
                         else {
                             //активируем поля и вставляем нужные значения
@@ -613,28 +658,32 @@ class VnzListsFunctions{
                                 dataType: "json",
                                 onsuccess: function (data) {
 
-                                    //Если результат пустой, то очищаем селект с Вузами и деактивируем его!
-                                    if(data.options === false || data.options == null){
+                                   // console.log(data);
+                                    if(data != null){
+                                        //Если результат пустой, то очищаем селект с Вузами и деактивируем его!
+                                        if(data.options === false || data.options == null){
 
-                                        //ДеАктивируем селекты:
-                                        $('.MyError').remove();
+                                            //ДеАктивируем селекты:
+                                            $('.MyError').remove();
 
-                                        self.city_select.closest('div[data-cid="UF_CRM_1552999785"]').after('<div class="MyError" style="color:red;font-weight:bolder;text-align: center;">' + data.message + '</div>'); // ошибка после города
+                                            self.city_select.closest('div[data-cid="UF_CRM_1552999785"]').after('<div class="MyError" style="color:red;font-weight:bolder;text-align: center;">' + data.message + '</div>'); // ошибка после города
 
-                                        self.univer_select.closest('div[data-cid="UF_CRM_1552999901"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
-                                        self.language_select.closest('div[data-cid="UF_CRM_1553001818"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
-                                        self.level_select.closest('div[data-cid="UF_CRM_1553001933"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
-                                        self.activity_direction_select.closest('div[data-cid="UF_CRM_1553001989"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+                                            self.univer_select.closest('div[data-cid="UF_CRM_1552999901"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
+                                            self.language_select.closest('div[data-cid="UF_CRM_1553001818"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
+                                            self.level_select.closest('div[data-cid="UF_CRM_1553001933"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
+                                            self.activity_direction_select.closest('div[data-cid="UF_CRM_1553001989"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+                                        }
+                                        else {
+
+                                            //активируем поля и вставляем нужные значения
+                                            self.univer_select.empty();
+                                            self.univer_select.append(data.options);
+                                            self.univer_select.closest('div[data-cid="UF_CRM_1552999901"]').css({'pointer-events':'auto','opacity':'1'});
+                                            self.language_select.closest('div[data-cid="UF_CRM_1553001818"]').css({'pointer-events':'auto','opacity':'1'});
+                                            self.level_select.closest('div[data-cid="UF_CRM_1553001933"]').css({'pointer-events':'auto','opacity':'1'});
+                                        }
                                     }
-                                    else {
 
-                                        //активируем поля и вставляем нужные значения
-                                        self.univer_select.empty();
-                                        self.univer_select.append(data.options);
-                                        self.univer_select.closest('div[data-cid="UF_CRM_1552999901"]').css({'pointer-events':'auto','opacity':'1'});
-                                        self.language_select.closest('div[data-cid="UF_CRM_1553001818"]').css({'pointer-events':'auto','opacity':'1'});
-                                        self.level_select.closest('div[data-cid="UF_CRM_1553001933"]').css({'pointer-events':'auto','opacity':'1'});
-                                    }
                                 }
                             });
                         }
@@ -660,6 +709,11 @@ class VnzListsFunctions{
                             self.language_select.closest('div[data-cid="UF_CRM_1553001818"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
                             self.level_select.closest('div[data-cid="UF_CRM_1553001933"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
                             self.activity_direction_select.closest('div[data-cid="UF_CRM_1553001989"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+
+                            //05.04 Очистка значений полей, если
+                            self.language_select.val("");
+                            self.level_select.val("");
+                            self.activity_direction_select.val("");
                         }
                         //активируем поле ниже Языков, значения НЕ вставляем и запросы НЕ делаем
                         else {
@@ -675,6 +729,9 @@ class VnzListsFunctions{
                             }
 
                             self.language_select.closest('div[data-cid="UF_CRM_1553001818"]').css({'pointer-events':'auto','opacity':'1'});
+
+                            //05.04
+                            self.level_select.closest('div[data-cid="UF_CRM_1553001933"]').css({'pointer-events':'auto','opacity':'1'});
 
                             //запрос для заполнения направления деятельности
 
@@ -832,6 +889,12 @@ class VnzListsFunctions{
                             self.alt_language_select.closest('div[data-cid="UF_CRM_1553181466"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
                             self.alt_level_select.closest('div[data-cid="UF_CRM_1553181533"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
                             self.alt_activity_direction_select.closest('div[data-cid="UF_CRM_1553181654"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+
+                            //05.04 Смена значений полей на "Не выбран"
+                            self.alt_univer_select.val("");
+                            self.alt_language_select.val("");
+                            self.alt_level_select.val("");
+                            self.alt_activity_direction_select.val("");
                         }
                         else {
                             //активируем поля и вставляем нужные значения
@@ -844,27 +907,29 @@ class VnzListsFunctions{
                                 dataType: "json",
                                 onsuccess: function (data) {
 
-                                    //Если результат пустой, то очищаем селект с Вузами и деактивируем его!
-                                    if(data.options === false || data.options == null){
+                                    if(data != null){
+                                        //Если результат пустой, то очищаем селект с Вузами и деактивируем его!
+                                        if(data.options === false || data.options == null){
 
-                                        //ДеАктивируем селекты:
-                                        $('.MyError1').remove();
+                                            //ДеАктивируем селекты:
+                                            $('.MyError1').remove();
 
-                                        self.alt_city_select.closest('div[data-cid="UF_CRM_1553181189"]').after('<div class="MyError1" style="color:red;font-weight:bolder;text-align: center;">' + data.message + '</div>'); // ошибка после города
+                                            self.alt_city_select.closest('div[data-cid="UF_CRM_1553181189"]').after('<div class="MyError1" style="color:red;font-weight:bolder;text-align: center;">' + data.message + '</div>'); // ошибка после города
 
-                                        self.alt_univer_select.closest('div[data-cid="UF_CRM_1553181334"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
-                                        self.alt_language_select.closest('div[data-cid="UF_CRM_1553181466"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
-                                        self.alt_level_select.closest('div[data-cid="UF_CRM_1553181533"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
-                                        self.alt_activity_direction_select.closest('div[data-cid="UF_CRM_1553181654"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
-                                    }
-                                    else {
+                                            self.alt_univer_select.closest('div[data-cid="UF_CRM_1553181334"]').css({'pointer-events':'none','opacity':'0.3'}); //ВУЗЫ
+                                            self.alt_language_select.closest('div[data-cid="UF_CRM_1553181466"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
+                                            self.alt_level_select.closest('div[data-cid="UF_CRM_1553181533"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
+                                            self.alt_activity_direction_select.closest('div[data-cid="UF_CRM_1553181654"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+                                        }
+                                        else {
 
-                                        //активируем поля и вставляем нужные значения
-                                        self.alt_univer_select.empty();
-                                        self.alt_univer_select.append(data.options);
-                                        self.alt_univer_select.closest('div[data-cid="UF_CRM_1553181334"]').css({'pointer-events':'auto','opacity':'1'});
-                                        self.alt_language_select.closest('div[data-cid="UF_CRM_1553181466"]').css({'pointer-events':'auto','opacity':'1'});
-                                        self.alt_level_select.closest('div[data-cid="UF_CRM_1553181533"]').css({'pointer-events':'auto','opacity':'1'});
+                                            //активируем поля и вставляем нужные значения
+                                            self.alt_univer_select.empty();
+                                            self.alt_univer_select.append(data.options);
+                                            self.alt_univer_select.closest('div[data-cid="UF_CRM_1553181334"]').css({'pointer-events':'auto','opacity':'1'});
+                                            self.alt_language_select.closest('div[data-cid="UF_CRM_1553181466"]').css({'pointer-events':'auto','opacity':'1'});
+                                            self.alt_level_select.closest('div[data-cid="UF_CRM_1553181533"]').css({'pointer-events':'auto','opacity':'1'});
+                                        }
                                     }
                                 }
                             });
@@ -892,6 +957,11 @@ class VnzListsFunctions{
                             self.alt_language_select.closest('div[data-cid="UF_CRM_1553181466"]').css({'pointer-events':'none','opacity':'0.3'}); // ЯЗЫКИ
                             self.alt_level_select.closest('div[data-cid="UF_CRM_1553181533"]').css({'pointer-events':'none','opacity':'0.3'}); // УРОВЕНЬ
                             self.alt_activity_direction_select.closest('div[data-cid="UF_CRM_1553181654"]').css({'pointer-events':'none','opacity':'0.3'}); // НАПРАВЛЕНИЕ
+
+                            //05.04 Очистка значений полей, если
+                            self.alt_language_select.val("");
+                            self.alt_level_select.val("");
+                            self.alt_activity_direction_select.val("");
                         }
                         //активируем поле ниже Языков, значения НЕ вставляем и запросы НЕ делаем
                         else {
@@ -907,6 +977,9 @@ class VnzListsFunctions{
                             }
 
                             self.alt_language_select.closest('div[data-cid="UF_CRM_1553181466"]').css({'pointer-events':'auto','opacity':'1'});
+
+                            //05.04
+                            self.alt_level_select.closest('div[data-cid="UF_CRM_1553181533"]').css({'pointer-events':'auto','opacity':'1'});
 
                             //запрос для заполнения направления деятельности
 
