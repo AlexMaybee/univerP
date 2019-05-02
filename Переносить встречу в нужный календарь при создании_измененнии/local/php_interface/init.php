@@ -36,7 +36,7 @@ CUtil::InitJSCore(array('addVnzFieldsListFunction'));
 AddEventHandler("calendar", "OnAfterCalendarEventEdit", Array("ActionCalendar", "AfterEventCl"));
 class ActionCalendar
 {
-    function AfterEventCl($arFields)
+    public function AfterEventCl($arFields)
     {
         $res_activity = [];
         if($arFields['ID'] > 0 && $GLOBALS['_POST']['ajax_action'] == 'ACTIVITY_SAVE') {
@@ -49,7 +49,7 @@ class ActionCalendar
                         'SECTIONS' => array(48),
                         'ID' => $arFields['ID'],
                     );
-                    updateCalendarSection($arFields);
+                    self::updateCalendarSection($arFields);
                 }
             }
         }
@@ -60,20 +60,19 @@ class ActionCalendar
                 'SECTIONS' => array(48),
                 'ID' => $arFields['ID'],
             );
-            $upd = updateCalendarSection($updFields);
+            $upd = self::updateCalendarSection($updFields);
         }
         // df([$arFields,$upd,$GLOBALS['_POST']]);
     }
-}
 
-
-function updateCalendarSection($arFields)
-{
-    global $USER;
-    $Params['arFields'] = $arFields;
-    $Params['userId'] = $USER->GetID();
-    $res = CCalendarEvent::Edit($Params);
-    //df($res);
+    private function updateCalendarSection($arFields)
+    {
+        global $USER;
+        $Params['arFields'] = $arFields;
+        $Params['userId'] = $USER->GetID();
+        $res = CCalendarEvent::Edit($Params);
+        //df($res);
+    }
 }
 
 
