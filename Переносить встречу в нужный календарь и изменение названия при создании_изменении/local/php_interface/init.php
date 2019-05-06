@@ -60,9 +60,14 @@ class ActionCalendar
                 'SECTIONS' => array(48),
                 'ID' => $arFields['ID'],
             );
+            $search = 'Бронювання';
+            if(preg_match('/'.$search.'/',$arFields['NAME'])){
+                echo '<br>СОВПАДЕНИЕ!<br>';
+                $updFields['NAME'] =  preg_replace('/'.$search.'/','Співбесіда',$arFields['NAME']);
+            }
             $upd = self::updateCalendarSection($updFields);
         }
-        // df([$arFields,$upd,$GLOBALS['_POST']]);
+       // df([$arFields,$upd,$GLOBALS['_POST']]);
     }
 
     private function updateCalendarSection($arFields)
