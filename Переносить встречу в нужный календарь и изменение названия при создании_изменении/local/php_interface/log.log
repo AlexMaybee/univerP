@@ -1,0 +1,168 @@
+Array
+(
+    [0] => Array
+        (
+            [DATE_FROM] => 05.05.2019 19:30:00
+            [DATE_TO] => 05.05.2019 20:30:00
+            [SKIP_TIME] => 
+            [NAME] => Бронювання: тест
+            [DESCRIPTION] => Послуга: Співбесіда
+            [TZ_FROM] => Europe/Athens
+            [TZ_TO] => Europe/Athens
+            [ID] => 7264
+            [EVENT_TYPE] => #resourcebooking#
+            [CAL_TYPE] => user
+            [OWNER_ID] => 0
+            [SECTIONS] => Array
+                (
+                    [0] => 5
+                    [1] => 48
+                )
+
+            [CREATED_BY] => 1
+            [ACTIVE] => 
+            [IS_MEETING] => 
+            [PRIVATE_EVENT] => 
+            [ACCESSIBILITY] => busy
+            [IMPORTANCE] => normal
+            [VERSION] => 2
+            [DAV_XML_ID] => 7264
+            [DATE_CREATE] => 02.05.2019 14:18:33
+        )
+
+    [1] => 
+    [2] => Array
+        (
+            [PARAMS] => Array
+                (
+                    [PATH_TO_PRODUCT_SHOW] => /crm/product/show/#product_id#/
+                    [PATH_TO_USER_PROFILE] => /company/personal/user/#user_id#/
+                    [NAME_TEMPLATE] => #NAME# #LAST_NAME#
+                    [CATEGORY_ID] => 0
+                )
+
+            [INITIAL_DATA] => 
+            [EDITOR_CONFIG_ID] => deal_details
+            [UF_CRM_1553181252] => 
+            [EVENT_DESTINATION] => Array
+                (
+                    [U] => Array
+                        (
+                            [0] => U482
+                        )
+
+                )
+
+            [UF_CRM_1554893912865] => Array
+                (
+                    [0] => user|482|05.05.2019 19:30:00|3600|Співбесіда
+                )
+
+            [ASSIGNED_BY_ID] => 1
+            [DEAL_PRODUCT_DATA] => 
+            [DEAL_PRODUCT_DATA_SETTINGS] => 
+            [DEAL_PRODUCT_DATA_INVALIDATE] => Y
+            [ACTION] => SAVE
+            [ACTION_ENTITY_ID] => 1453
+            [ACTION_ENTITY_TYPE] => D
+            [ENABLE_REQUIRED_USER_FIELD_CHECK] => Y
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [DATE_FROM] => 02.05.2019 16:00:00
+            [DATE_TO] => 02.05.2019 17:00:00
+            [SKIP_TIME] => 
+            [NAME] => Бронювання: тест
+            [DESCRIPTION] => Послуга: Співбесіда
+            [TZ_FROM] => Europe/Athens
+            [TZ_TO] => Europe/Athens
+            [EVENT_TYPE] => #resourcebooking#
+            [CAL_TYPE] => user
+            [OWNER_ID] => 1
+            [SECTIONS] => Array
+                (
+                    [0] => 1
+                )
+
+            [VERSION] => 1
+            [ID] => 7303
+        )
+
+    [1] => 
+    [2] => Array
+        (
+            [PARAMS] => Array
+                (
+                    [PATH_TO_PRODUCT_SHOW] => /crm/product/show/#product_id#/
+                    [PATH_TO_USER_PROFILE] => /company/personal/user/#user_id#/
+                    [NAME_TEMPLATE] => #NAME# #LAST_NAME#
+                    [CATEGORY_ID] => 0
+                )
+
+            [INITIAL_DATA] => 
+            [EDITOR_CONFIG_ID] => deal_details
+            [UF_CRM_1553181252] => 
+            [EVENT_DESTINATION] => Array
+                (
+                    [U] => Array
+                        (
+                            [0] => U1
+                        )
+
+                )
+
+            [UF_CRM_1554893912865] => Array
+                (
+                    [0] => user|1|02.05.2019 16:00:00|3600|Співбесіда
+                )
+
+            [ASSIGNED_BY_ID] => 1
+            [DEAL_PRODUCT_DATA] => 
+            [DEAL_PRODUCT_DATA_SETTINGS] => 
+            [DEAL_PRODUCT_DATA_INVALIDATE] => Y
+            [ACTION] => SAVE
+            [ACTION_ENTITY_ID] => 1453
+            [ACTION_ENTITY_TYPE] => D
+            [ENABLE_REQUIRED_USER_FIELD_CHECK] => Y
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [CAL_TYPE] => user
+            [OWNER_ID] => 1
+            [NAME] => Тест
+            [DATE_FROM] => 02.05.2019 16:30:00
+            [DATE_TO] => 02.05.2019 17:00:00
+            [IMPORTANCE] => normal
+            [DESCRIPTION] => ОФВЫРАПРОФВАРО
+            [TZ_FROM] => Europe/Athens
+            [TZ_TO] => Europe/Athens
+            [SECTIONS] => 1
+            [REMIND] => Array
+                (
+                    [type] => min
+                    [count] => 0
+                )
+
+            [VERSION] => 1
+            [ID] => 7305
+        )
+
+    [1] => 
+    [2] => Array
+        (
+            [ACTION] => COMPLETE
+            [COMPLETED] => 1
+            [ITEM_ID] => 20756
+            [OWNER_TYPE] => 
+            [OWNER_ID] => 0
+        )
+
+)
